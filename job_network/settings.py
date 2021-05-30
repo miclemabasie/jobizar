@@ -142,11 +142,10 @@ WSGI_APPLICATION = 'job_network.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': env('DATABASE_NAME'),
+        'NAME': "job_lister",
         'HOST': 'localhost',
-        'PORT': '5432',
-        'USER': env('DATABASE_USER'),
-        'PASSWORD': env('DATABASE_PASSWORD')
+        'PORT': "miclem",
+        'PASSWORD': "12electron@3#"
     }
 }
 
