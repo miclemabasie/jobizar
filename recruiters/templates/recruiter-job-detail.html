@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block head_css %}
+{% include "utils/css-refs.html" %}
+{% endblock head_css %}
+
+{% block content %}
+<main class="container">
+  <section class="featured-places">
+      <div class="container">
+          <div class="row">
+            
+
+            <div class="col-lg-12 col-md-12 col-xs-12">
+              <h2><i>{{job.title}} ({{job.job_type}})</i></h2>
+
+              <p class="lead">
+                <i class="fa fa-map-marker"></i> {{job.location}} &nbsp;&nbsp;
+                <i class="fa fa-calendar"></i> {{job.updated_at}} &nbsp;&nbsp;
+                <i class="fa fa-file"></i> {{job.job_type}}
+              </p>
+              <div>
+              <h5><strong class="text-primary">Applicants: {{applicant_count}}</strong></h5>
+              </div>
+              <h5><strong class="text-primary">Selected Applicants: {{selected_applicant_count}}</strong></h5>
+              </div>
+
+              <div class="blue-button m-5">
+                    <a href="{% url "recruiters:job-detail-table" job.slug %}"> <strong> View All Applicants</strong></a>
+                </div>
+            </div>
+
+            <div style="float: right;">
+              <a class="btn" style="background-color: green; color: white;" href="{% url "recruiters:update-job" job.slug %}">Edit Job</a>
+              <a class="btn " style="background-color: rgb(190, 25, 13); color: white;" href="{% url "recruiters:remove-job" job.slug %}"> Remove Job</a>
+            </div>
+          </div>
+          <hr my-2 />
+          <div class="accordions">
+            <span style="font-size: 18px"><b>Job Description</b></span>
+            <p style="white-space: pre-wrap; font-size: 16px">
+              {{ job.description }}
+            </p>
+          </div>
+      </div>
+  </section>
+</main>
+{% endblock content %}
+S
+
+{% block js %}
+{% include "utils/js-refs.html" %}
+{% endblock js %}

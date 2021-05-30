@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block head_css %}
+{% include "utils/css-refs.html" %}
+{% endblock head_css %}
+
+
+{% block content %}
+<div class="container" style="margin: 100px;">
+<form method='POST'>
+    {% csrf_token %}
+    <div class="row">
+    <div class="col-md-8">
+        <p>Do you want to remove "{{job.title}}"??</p>
+    </div>
+    <div class="col-md-4">
+        <input type="submit" class="btn btn-danger">
+        <a href="{% url "recruiters:recruiter-job-detail" job.slug %}" class="btn" style="background-color: green; color: white;">Cancel</a>
+     
+    </div>
+    </div>  
+</form>
+</div>
+{% endblock content %}
+
+{% block js %}
+{% include "utils/js-refs.html" %}
+{% endblock js %}

@@ -1,0 +1,59 @@
+{% load static %}
+
+<footer>
+	<div class="container">
+		<div class="col-md-3 col-sm-6">
+			<h4>Userful Links</h4>
+			<ul>
+				<li><a href="{% url "candidates:browse-jobs" %}">Browse Jobs</a></li>
+				<li><a href="#">Privacy Policy</a></li>
+				<li><a href="#">Terms and conditions</a></li>
+				<li><a href="{% url 'blog:post-list' %}">Blog</a></li>
+				<li><a href="{% url 'users:report' %}">Report a Problem</a></li>
+				<li><a href="#">Jobs by Skill</a></li>
+			</ul>
+		</div>
+		
+		<div class="col-md-3 col-sm-6">
+			<h4>Social Links</h4>
+			<ul>
+				<li><a href="#"><i class="fa fa-facebook"> Facebook</i></a></li>
+				<li><a href="#"><i class="fa fa-google-plus"> Google</i></a></li>
+				<li><a href="#"><i class="fa fa-instagram"> Instagram</i></a></li>
+				<li><a href="#"><i class="fa fa-linkedin"> Linkedin</i></a></li>
+				<li><a href="#"><i class="fa fa-skype">S kype</i></a></li>
+				
+				
+			</ul>
+		</div>
+		
+		<div class="col-md-3 col-sm-6">
+			<h4>Reach Us</h4>
+			<address>
+			<ul>
+			<li>Bamenda<br>
+			Cameroon</li>
+			<li>Email: jobizar@gmail.com</li>
+			<li>Call: +237 680672888</li>
+			<li>Skype: jobizar@skype</li>
+			<li>FAX: 123 456 85</li>
+			</ul>
+			</address>
+		</div>
+		
+		<div class="col-md-3 col-sm-6">
+			<h4>Drop A Mail</h4>
+			<form method="get" action="{% url "contacts:contact-footer" %}">
+				{% csrf_token %}
+				<input type="text" name="name" class="form-control input-lg" placeholder="Your Name">
+				<input type="text" name="email" class="form-control input-lg" placeholder="Email...">
+				<textarea name="message" class="form-control" placeholder="Message"></textarea>
+				<button type="submit" class="btn btn-primary">Send</button>
+			</form>
+		</div>
+		
+	</div>
+	<div class="copy-right">
+		<p>&copy;Copyright 2021 Jober Desk | Design By <a href="#">Miclem</a></p>
+	</div>
+</footer>

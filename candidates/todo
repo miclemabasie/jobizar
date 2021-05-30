@@ -1,0 +1,3 @@
+users should be able to search jobs on home page
+users should be able to see all jobs without searching
+authenticated users should be able to save, apply and delete saved jobs 

@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block head_css %}
+{% include "utils/css-refs.html" %}
+{% endblock head_css %}
+
+
+{% block content %}
+<div class="container"> 
+    <h1 class="text-center"> Policy Page</h1>
+    {% lorem 4 %}
+	<li>
+        <input id="checkbox-4" class="checkbox-custom" name="accept-policy" type="checkbox">
+        <label for="checkbox-4" class="internship checkbox-custom-label">I Have Read And Accepted The Policy Terms</label>
+    </li>
+    <div class="text-right">
+        <a class="btn btn-info" href="{% url 'recruiters:add-job' %}"> Continue </a>
+    </div>
+</div>
+{% endblock content %}
+
+
+{% block js %}
+{% include "utils/js-refs.html" %}
+{% endblock js %}

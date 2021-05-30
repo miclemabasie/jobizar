@@ -1,0 +1,87 @@
+{% extends "base.html" %}
+
+{% block head_css %}
+{% include "utils/css-refs.html" %}
+{% endblock head_css %}
+
+{% block content %}
+<!-- Inner Banner -->
+
+
+<section class="jobs">
+    <div class="container">
+        <div class="row heading">
+            <h2>Jobs posted by {{company.name}}</h2>
+            <p>Here are all the jobs posted under {{company.name}} so far!!</p>
+        </div>
+        <div class="companies"></div>
+        {% if jobs %}
+        {% for job in jobs %}
+        <div class="company-list">
+			<div class="row">
+				
+				<div class="col-md-10 col-sm-10" style="padding-left: 30px;">
+					<div class="company-content">
+						<h3>{{job.title}}</h3>
+						<p><span class="company-name"><i class="fa fa-briefcase"></i>{{job.company.name}}</span><span class="company-location"><i class="fa fa-map-marker"></i>{{job.location}}</span><span class="package"><i class="fa fa-money"></i>{{job.min_salary}}-{{job.max_salary}}XAF</span></p>
+						<p>{{job.description|truncatewords:20}}</p>
+					</div>
+				</div>
+				<div class="col-md-2 col-sm-2">
+					{% if request.user == job.recruiter %}
+					<a href="{% url 'recruiters:recruiter-job-detail' job.slug %}" class="btn btn-success">View Job</a>
+					{% else %}
+					<a href="{% url 'candidates:job-details' job.slug %}" class="btn btn-success">View Job</a>
+					{% endif %}
+					
+				</div>
+			</div>
+		</div>
+        {% endfor %}
+        {% if jobs %}
+            
+        <div class="row">
+            <a href="{% url "recruiters:company-jobs-analytics" request.user.profile.slug %}" class="btn brows-btn"> View Company Jobs Analytics</a>
+        </div>
+        {% endif %}
+        
+        {% else %}
+        <div class="container text-center">
+        <h3>No jobs available at the moment from this company!</h3>
+    </div>
+</div>
+<div class="row">
+    <a href="{% url "recruiters:add-job" %}" class="btn brows-btn">Add Job Now</a>
+</div>
+        {% endif %}
+            
+       
+    </div>
+</section>
+            
+{% endblock content %}
+
+{% block js %}
+{% include "utils/js-refs.html" %}
+{% endblock js %}
+
+<div class="company-list">
+    <div class="row">
+        
+        <div class="col-md-10 col-sm-10" style="padding-left: 30px;">
+            <div class="company-content">
+                <h3>{{job.title}}</h3>
+                <p><span class="company-name"><i class="fa fa-briefcase"></i>{{job.company.name}}</span><span class="company-location"><i class="fa fa-map-marker"></i>{{job.location}}</span><span class="package"><i class="fa fa-money"></i>{{job.min_salary}}-{{job.max_salary}}XAF</span></p>
+                <p>{{job.description|truncatewords:20}}</p>
+            </div>
+        </div>
+        <div class="col-md-2 col-sm-2">
+            {% if request.user == job.recruiter %}
+            <a href="{% url 'recruiters:recruiter-job-detail' job.slug %}" class="btn btn-success">View Job</a>
+            {% else %}
+            <a href="{% url 'candidates:job-details' job.slug %}" class="btn btn-success">View Job</a>
+            {% endif %}
+            
+        </div>
+    </div>
+</div>

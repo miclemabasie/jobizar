@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% block head_css %}
+  {% include "utils/css-refs.html" %}
+{% endblock head_css  %}
+
+
+{% block content %}
+<div class="container">
+    <form action="." method='POST'>
+        {% csrf_token %}
+        {{form|crispy}}
+        <div class="form-group text-right" >
+            <button class="btn btn-primary" type="submit">Update</button>
+        </div>
+  </form>
+</div>
+{% endblock content %}
+
+
+
+{% block js %}
+  {% include "utils/js-refs.html" %}
+{% endblock js %}

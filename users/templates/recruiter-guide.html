@@ -1,0 +1,89 @@
+{% extends 'base.html' %}
+
+{% block head_css %}
+{% include "utils/css-refs.html" %}
+{% endblock head_css %}
+
+
+{% block content %}
+	</section>
+		
+		<section class="features">
+			<div class="container">
+				<div class="col-md-4 col-sm-4">
+					<div class="features-content">
+						<span class="box1"><span aria-hidden="true" class="icon-dial"></span></span>
+						<h3>Create An Account</h3>
+                <p>Users will need to sign up for a free account with Joberdesk so there can have full access to the free content that this site has to offer.</p>
+					</div>
+				</div>
+				
+				<div class="col-md-4 col-sm-4">
+					<div class="features-content">
+						<span class="box1"><span aria-hidden="true" class="icon-search"></span></span>
+						<h3>Search Desired Job</h3>
+                <p>Search jobs that interest you or fit your skills set by using the job name, location, and or the job's type or just browse all jobs.</p>
+					</div>
+				</div>
+				
+				<div class="col-md-4 col-sm-4">
+					<div class="features-content">
+						<span class="box1"><span aria-hidden="true" class="icon-printer"></span></span>
+						<h3>Send Your Resume</h3>
+                <p>Candidates should consider uploading their resume unto to this site, only candidates with resumes in their profiles can apply for jobs.</p>
+					</div>
+				</div>
+
+				<div class="col-md-12 col-sm-12">
+					<div class="features-content">
+						<span class="box1"><span aria-hidden="true" class="icon-upload"></span></span>
+						<h3>Upload Jobs</h3>
+						<p>Users who have created their accounts have the ability to post jobs to this site just as many as they may wish to. But it should be noted that all jobs posted by user will be vierified before publishing which takes a minimum of 24 hours .</p>
+						<div class="text-center">
+                    		<a class="btn btn-danger" href="{% url "recruiters:add-job"  %}">Add A Job</a>
+						</div>
+					</div>
+				</div>
+{% comment %} 				
+				<!-- <div class="col-md-4 col-sm-4">
+					<div class="features-content">
+						<span class="box1"><span aria-hidden="true" class="icon-dial"></span></span>
+						<h3>Create An Account</h3>
+						<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incidid ut labore et dolore magna aliqua.</p>
+					</div>
+				</div>
+				
+				<div class="col-md-4 col-sm-4">
+					<div class="features-content">
+						<span class="box1"><span aria-hidden="true" class="icon-search"></span></span>
+						<h3>Search Desired Job</h3>
+						<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incidid ut labore et dolore magna aliqua.</p>
+					</div>
+				</div>
+				
+				<div class="col-md-4 col-sm-4">
+					<div class="features-content">                                   
+						<span class="box1"><span aria-hidden="true" class="icon-printer"></span></span>
+						<h3>Send Your Resume</h3>
+						<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incidid ut labore et dolore magna aliqua.</p>
+					</div>
+				</div>
+				<div class="col-md-12 col-sm-12">
+					<div class="features-content">
+						<span class="box1"><span aria-hidden="true" class="icon-printer"></span></span>
+						<h3>Set Up A Company Profile</h3>
+						<p>{% lorem 1 b random %}</p>                               
+						<div class="text-center">
+                    		<a class="btn btn-danger" href="{% url "companies:setup-company" request.user.profile.slug%}">Add A Job</a>
+						</div>
+					</div>
+				</div> --> {% endcomment %}
+			
+			</div>
+		</section>
+{% endblock content %}
+
+
+{% block js %}
+{% include "utils/js-refs.html" %}
+{% endblock js %}

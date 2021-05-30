@@ -1,0 +1,40 @@
+{% extends "base-blog.html" %}
+{% load crispy_forms_tags %}
+
+{% block head_css %}
+  {% include "utils/css-refs.html" %}
+{% endblock head_css %}
+
+
+{% block content %}
+<div class="container">
+
+  {% if sent %}
+    <h3>Email was successfully sent to {{form.to_email}}</h3>
+
+    {{post.title}}
+
+    <div class="text-center">
+      <a class="btn btn-primary" href="{{post.get_absolute_url}}">Done</a>
+    </div>
+
+
+    
+  {% else %}
+  <form action"." method="post">
+      {% csrf_token %}
+
+
+
+      {{form|crispy}}
+      <input type="submit" value="Add Comment">
+  </form>
+  {% endif %}
+  
+</div>
+{% endblock content %}
+
+
+{% block js %}
+  {% include "utils/js-refs.html" %}
+{% endblock js %}

@@ -1,0 +1,33 @@
+{% load static %}
+<!doctype html>
+<html class="no-js" lang="en">
+    <head>
+    {% block head_css %}{% endblock head_css %}
+
+    </head>
+	
+    <body>
+	{% include 'utils/navigation.html' %}
+
+
+    {% if messages %}
+        {% for message in messages %}
+        <p class="alert alert-secondary" role="alert">
+			{{message}}
+		</p>
+        {% endfor %}
+    {% endif %}
+
+
+	{% block content %}
+	
+	{% endblock content %}
+
+		
+		<!-- footer start -->
+		{% include 'utils/footer.html' %}
+
+		 
+	{% include 'utils/js-refs.html' %}
+    </body>
+</html>

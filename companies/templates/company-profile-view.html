@@ -1,0 +1,70 @@
+{% extends 'base.html' %}
+
+
+{% block head_css %}
+{% include "utils/css-refs.html" %}
+{% endblock head_css %}
+
+
+{% block content %}
+<section class="profile-detail">
+		<div class="container">
+			<div class="col-md-12">
+				<div class="row">
+					<div class="basic-information">
+						<div class="col-md-3 col-sm-3">
+						 <img src="{{company.logo.url}}" alt="" class="img-responsive" style="border-radius: 50%;">
+						</div>
+						<div class="col-md-9 col-sm-9">
+							<div class="profile-content">
+									<h2>{{company.name}}<span>{{company.line_of_engagement}}</span></h2>
+									<p>Now Hiring(102)</p>
+									<ul class="information">
+										<li><span>Address:</span>{{company.location}}</li>
+										<li><span>Website:</span>company.link</li>
+										<li><span>Employee:</span>50,000 - 70,000 employer</li>
+										<li><span>Mail:</span>{{company.mail}}</li>
+										<li><span>From:</span>1998</li>
+									</ul>
+								</div>
+
+								{% if edit %}
+								<div class="text-right">
+								<a class="btn btn-primary" href="{% url "companies:update-company-profile" company.slug %}">Edit Profile</a>
+								</div>
+								{%else%}
+								<div class="text-right">
+									<a class="btn btn-primary" href="{% url "companies:update-company-profile" company.slug %}">View all jobs from {{company.name}}</a>
+								</div>
+								{% endif %}
+							</div>
+						</div>
+						<!-- <ul class="social">
+							<li><a href="{{company.facebook}}" class="facebook"><i class="fa fa-facebook"></i>Facebook</a></li>
+							<li><a href="{{company.google}}" class="google"><i class="fa fa-google-plus"></i>Google Plus</a></li>
+							<li><a href="{{company.twitter}}" class="twitter"><i class="fa fa-twitter"></i>Twitter</a></li>
+							<li><a href="{{company.linkedin}}" class="linkedin"><i class="fa fa-linkedin"></i>Linked In</a></li>
+							<li><a href="{{company.instagram}}" class="instagram"><i class="fa fa-instagram"></i>Instagram</a></li>
+						</ul> -->
+						<div class="panel panel-default" style="margin-top: 30px;">
+							<div class="panel-heading">
+								<i class="fa fa-user fa-fw"></i> About {{company.name}}
+							</div>
+												<!-- /.panel-heading -->
+							<div class="panel-body">
+							<p>{{company.about}}</p>	
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+
+
+{% endblock content %}
+
+{% block js %}
+{% include "utils/js-refs.html" %}
+{% endblock js %}

@@ -1,0 +1,50 @@
+{% load socialaccount %}
+{% load static %}
+
+{% get_providers as socialaccount_providers %}
+{% for provider in socialaccount_providers %}
+  {% if provider.id == "openid" %}
+  {% for brand in provider.get_brands %}
+  <li>
+    <a title="{{brand.name}}" 
+      class="socialaccount_provider {{provider.id}} {{brand.id}}" 
+      href="{% provider_login_url provider.id openid=brand.openid_url process=process %}"
+      >{{brand.name}}</a>
+  </li>
+  {% endfor %}
+  {% endif %}
+  <div class="col-md-12 col-xs-12 col-lg-12 container" style="margin: 10px; max-width: 100%; margin-left: auto;" >
+  
+    <a title="{{provider.name}}" class="socialaccount_provider {{provider.id}}" 
+      href="{% provider_login_url provider.id process=process scope=scope auth_params=auth_params %}"><span"><i class="fa fa-{{provider.name|lower}}"></i></span> {{provider.name|lower}}</a>
+
+  </div>
+    {% endfor %}
+    
+  
+
+{% comment %} <div class="col-md-5">
+    <span class="d-block text-center my-4 text-muted"> or sign in with</span>
+      <div class="social-login text-center">
+      {% for provider in socialaccount_providers %}
+      {% if provider.id == "openid" %}
+      {% for brand in provider.get_brands %}
+          <a href="{% provider_login_url provider.id openid=brand.openid_url process=process %}" class="{{brand.name}} btn btn-block socialaccount_provider {{provider.id}} {{brand.id}}">
+            <span class="icon-{{brand.name}} mr-3"></span> 
+          </a>
+        {% endfor %}
+        {% endif %}
+        <li>
+          <a title="{{provider.name}}" class="socialaccount_provider {{provider.id}}" 
+            href="{% provider_login_url provider.id process=process scope=scope auth_params=auth_params %}">{{provider.name}}</a>
+      </li>
+    {% endfor %}
+
+  </div>
+
+</div>
+
+           {% endcomment %}
+
+
+

@@ -1,0 +1,80 @@
+{% extends "base-blog.html" %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% load blog_tags %}
+
+
+{% block head_css %}
+{% include "utils/css-refs.html" %}
+{% endblock head_css %}
+
+
+{% block content %}
+
+    <h3 class="text-center">{{post.title}} </h3>
+    <hr>
+    {% if tags %}
+    <p> 
+        <span style="font-weight:bold;">Tags:</span>  {% for tag in tags %}<a href="{% url "blog:tag-post-listview" tag.slug %}" style="color: blue;">{{tag.name}}</a>{% if not forloop.last %} , {% endif %}{% endfor %}
+    </p>
+    {% endif %}
+
+<hr>
+
+<p class="lead">
+    {{post.body|convert_markdown|safe}}<br>
+</p>
+
+<hr>
+<a href="{% url "blog:share-post" post.id %}">share post</a><br>
+
+{%endblock content%}
+
+
+
+
+{% block comments %}
+
+{% if comments %}
+<h3>{{comments_count}} Comments so far!</h3>
+    {% for comment in comments %}
+    <div class="comment">
+        <div class="comments-details">
+            <div class="comments-list-img" style="float: left; margin-right: 30px;">
+            <img style="max-height: 40px; max-width: 40px" src="{% static "site-1/img/google.png" %}" alt="post-author">
+            </div>
+            <div class="comments-content-wrap" style="margin-left: 50px;">
+            <span>
+                <b><a href="#">{{comment.name}}</a></b>
+                Post author
+                <span class="post-time"><i>{{comment.created}}</i></span>
+            
+            </span>
+            <p>{{comment.body}} </p>
+            </div>
+        </div>
+    </div>
+        
+    {% endfor %}
+{% else %}
+    <h4>0 comments for this post</h4>
+{% endif %}
+{% if new_comment %}
+<h3>Coomment has been successfully added</h3> 
+{% else %}
+<h3>Add comment</h3>
+{% endif %}
+
+    <form action="." method="post">
+        {% csrf_token %}
+        {{form|crispy}}
+        <input type="submit" value="Add comment" class="btn" style="background-color: crimson; color: white;">
+
+    {% endblock comments %}
+
+
+
+
+{% block js %}
+{% include "utils/js-refs.html" %}
+{% endblock js %}

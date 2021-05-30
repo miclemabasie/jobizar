@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+
+{% block head_css %}
+{% include "utils/css-refs.html" %}
+{% endblock head_css %}
+
+
+{% block content %}
+<div class="container" style="margin-top: 40px; margin-bottom: 40px;">
+{% if request.user.profile.has_company %}  
+<h1 class="text-center">Company Job Analytics </h1>
+{% else %}
+<h1 class="text-center">Your Job Analytics</h1>
+{% endif %}
+<table class='table'>
+        
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col" class="text-center">Name</th>
+            <th scope="col" class="text-center">APPLICANTS</th>
+            <th scope="col" class="text-center">SELECTED</th>
+            <th scope="col" class="text-center">LAST UPDATED</th>
+            <th scope="col" class="text-center">STATUS</th>
+            <th scope="col" class="text-center">EDIT</th>
+            <th scope="col" class="text-center">DELETE</th>
+        </tr>
+    </thead>
+    
+    <tbody>
+        
+        {% for job in jobs %}
+        <tr style="padding: 200px;">
+            <td scope="row">{{forloop.counter}}</td>
+            
+            <td class="text-center"><a href="{% url "recruiters:recruiter-job-detail" job.slug%}">{{job.title}}</a></td>
+            <td class="text-center">{{job.applied_count}}</td>
+            <td class="text-center">{{job.selected_count}}</td>
+            <td class="text-center">{{job.updated_at}}</td>
+            <td class="text-center">{{job.active}}</td>
+            <td class="text-center"><a class="btn" style="background-color: green; color: white;" href="{% url "recruiters:update-job" job.slug %}">Edit Job</a></td>
+            <td class="text-center"><a class="btn " style="background-color: rgb(190, 25, 13); color: white;" href="{% url "recruiters:remove-job" job.slug %}"> Remove Job</a></td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+</div>
+{% endblock content %}
+
+
+{% block js %}
+{% include "utils/js-refs.html" %}
+{% endblock js %}

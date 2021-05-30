@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+
+{% block head_css %}
+{% include "utils/css-refs.html" %}
+{% endblock head_css %}
+
+
+{% block content %}
+<section class="jobs">
+    <div class="container">
+        <div class="row heading">
+            <h2>All Jobs from: {{request.user.username}}!</h2>
+        </div>
+       
+        <div class="companies">
+        {% if jobs %}
+        {% for job in jobs %}
+            <div class="company-list">
+                <div class="row">
+                    <div class="col-md-2 col-sm-2">
+                        <div class="company-logo">
+                            {% if job.image %}
+                            <img src="{{job.image.url}}" class="img-responsive" alt="" />
+                            {% else %}
+                            <img src="img/google.png" class="img-responsive" alt="" />
+                            {% endif %}
+                        </div>
+                    </div>
+                    <div class="col-md-8 col-sm-8">
+                        <div class="company-content">
+                            <h3>{{job.title}}</h3>
+                            <p><span class="company-name"><i class="fa fa-briefcase"></i>{{job.company.name}}</span><span class="company-location"><i class="fa fa-map-marker"></i>{{job.location}}</span><span class="package"><i class="fa fa-money"></i>{{job.min_salary}}-{{job.max_salary}}XAF</span></p>
+                            <p>{{job.description|truncatewords:20}}</p>
+                        </div>
+                    </div>
+                    <div class="col-md-2 col-sm-2">
+                        {% if request.user == job.recruiter %}
+                        <a href="{% url 'recruiters:recruiter-job-detail' job.slug %}" class="btn view-btn">View Job</a>
+                        {% else %}
+                        <a href="{% url 'candidates:job-details' job.slug %}" class="btn view-btn">View Job</a>
+                        {% endif %}
+                        <!-- <button type="submit" class="btn view-job" name="View Job"></button> -->
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+        {% else %}
+        <h1>No Jobs a matched your searched!</h1>
+        {% endif %}
+            
+        </div>
+    </div>
+</section>
+{% endblock content %}
+
+
+{% block js %}
+{% include "utils/js-refs.html" %}
+{% endblock js %}

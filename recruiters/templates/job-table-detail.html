@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+
+{% block head_css %}
+{% include "utils/css-refs.html" %}
+{% endblock head_css %}
+
+
+{% block content %}
+<h1></h1>
+
+<div class="container m-5" style="margin-top: 40px; margin-bottom: 40px;">
+    <h3 class='text-center'>Job Analytics For {{job.title}}</h3>
+    <hr class="mt-2">
+    {% if applicant_list %}
+    <table class='table'>
+        
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col" class="text-center">Name</th>
+                <th scope="col" class="text-center">LOCATION</th>
+                <th scope="col" class="text-center">PROFFESSION</th>
+                <th scope="col" class="text-center">RESUME</th>
+                <th scope="col" class="text-center">STATS</th>
+            </tr>
+        </thead>
+        
+        <tbody>
+            
+            {% for applicant in applicant_list %}
+            <tr style="padding: 200px;">
+                <td scope="row">{{forloop.counter}}</td>
+                <td class="text-center"><a href="{% url "users:profile-view" applicant.applicant.profile.slug %}" style="color: rgb(13, 131, 241);">{{applicant.applicant.username}}</a></td>
+                <td class="text-center">{{applicant.applicant.profile.location}}</td>
+                <td class="text-center">{{applicant.applicant.profile.proffession}}</td>
+                <td class="text-center"><a href="{{applicant.applicant.profile.resume.url}}">Download Resume</a></td>
+                {% if applicant.applicant.username in selected_list %}
+                    <td class="text-center" style="background-color: green; color: white;">selected</td>
+                {% else %}
+                <td class="text-center" style="background-color: #da0833; color: white;"><a style="color: white;" href="{% url "recruiters:select-applicant" job.slug applicant.applicant.username%}">Select</a></td>
+                {% endif %}
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% else %}
+        <h3 class="text-center">No Applicants for this job</h3>
+    {% endif %}
+            
+           
+        
+    
+</div>
+<h1 ></h1>
+{% endblock content %}
+
+{% block js %}
+{% include "js-refs.html" %}
+{% endblock js %}

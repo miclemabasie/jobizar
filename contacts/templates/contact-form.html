@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+
+{% block head_css %}
+{% include "utils/css-refs.html" %}
+{% endblock head_css %}
+
+{% block content %}
+<div class="container">
+<form method='post'>
+{% csrf_token %}
+{{form|crispy}}
+    <input type="submit" value="Send" class="btn btn-primary" style="float: right;" />
+</form>
+</div>
+{% endblock content %}
+
+
+{% block js %}
+{% include "utils/js-refs.html" %}
+{% endblock js %}

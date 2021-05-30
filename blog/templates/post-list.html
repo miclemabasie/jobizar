@@ -1,0 +1,149 @@
+{% extends "base-blog.html" %}
+{% load blog_tags %}
+{% load static %}
+
+
+{% block head_css %}
+{% include "utils/css-refs.html" %}
+{% endblock head_css %}
+
+
+{% block content %}
+
+    {% if search %}
+    <div class="row heading">
+        <h3>Posts containing "{{query}}"</h3>
+        {% if results %}
+            <p>Here are the posts that matched your search!</p>
+        {% else %}
+            <p>Oops!! Sorry no post matches your query.</p>
+        {% endif %}
+    </div>
+    
+    {% for post in results %}
+    <div class="companies">
+        <div class="company-list">
+            <div class="row">
+                <div class="col-md-2 col-sm-2">
+                {% if post.image %}
+                    
+                <div class="company-logo">
+                    <img src="{{post.image.url}}" class="img-responsive" alt="" />
+                </div>
+                {% else  %}
+                <div class="company-logo">
+                    <img src="" class="img-responsive" alt="" />
+                </div> 
+                {% endif %}
+                </div>
+                <div class="col-md-10 col-sm-10">
+                    <div class="company-content">
+                        <a href="{{post.get_absolute_url}}"><h4>{{post.title}}<span class="full-time">Full Time</span></h4></a>
+                        <p><span class="company-name"><i class="fa fa-briefcase"></i>Google</span><span class="company-location"><i class="fa fa-map-marker"></i> 07th Avenue, New York, NY, United States</span><span class="package"><i class="fa fa-money"></i>$22,000-$50,000</span></p>
+                    </div>
+                    <p>{{post.body | truncatewords:3|linebreaks}}</p>
+                    <div class="text-right">
+                        <a href="{{post.get_absolute_url}}" class="btn btn-primary">Learn More</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+            
+           
+    </div>
+    {% endfor %}~
+    {% else %}
+        
+    {% if tag %}
+    <div class="row heading">
+        <h3>post tagged with "{{tag}}"</h3>        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do</p>
+    </div>
+        
+    {% else %}
+    <div class="row heading">
+        <h3>Here are the list of posts</h3>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do</p>
+    </div>
+    {% endif %}
+
+    {% for post in posts %}
+       
+    
+    <div class="companies">
+        <div class="company-list">
+            <div class="row">
+                <div class="col-md-2 col-sm-2">
+                {% if post.image %}
+                    
+                <div class="company-logo">
+                    <img src="{{post.image.url}}" class="img-responsive" alt="" />
+                </div>
+                {% else  %}
+                <div class="company-logo">
+                    <img src="" class="img-responsive" alt="" />
+                </div> 
+                {% endif %}
+                </div>
+                <div class="col-md-10 col-sm-10">
+                    <div class="company-content">
+                        <a href="{{post.get_absolute_url}}"><h4>{{post.title}}<span class="full-time">Full Time</span></h4></a>
+                        <p><span class="company-name"><i class="fa fa-article"></i>Admin</span><span class="company-location"><i class="fa fa-comment"></i> {{post.comments.count}}</span><span class="package"><i class="fa fa-calenda"></i>{{post.created}}</span></p>
+                    </div>
+                    <p>{{post.body | truncatewords:3|linebreaks}}</p>
+                    <div class="text-right">
+                        <a href="{{post.get_absolute_url}}" class="btn btn-primary">Learn More</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+            
+           
+    </div>
+
+           
+        {% endfor %}
+
+    
+    <div class="text-center">
+        {% include "utils/pagination.html"  with page=page_obj%}
+    </div>
+
+    {% endif %}
+{% endblock content %}
+
+
+{% block js %}
+<!-- {% include "utils/js-refs.html" %} -->
+{% endblock js %}
+
+
+<section class="jobs">
+    <div class="container">
+        <div class="row heading">
+            <h2>Find Popular Jobs</h2>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do</p>
+        </div>
+        <div class="companies">
+            <div class="company-list">
+                <div class="row">
+                    <div class="col-md-2 col-sm-2">
+                        <div class="company-logo">
+                            <img src="img/google.png" class="img-responsive" alt="" />
+                        </div>
+                    </div>
+                    <div class="col-md-10 col-sm-10">
+                        <div class="company-content">
+                            <h3>IOS Developer<span class="full-time">Full Time</span></h3>
+                            <p><span class="company-name"><i class="fa fa-briefcase"></i>Google</span><span class="company-location"><i class="fa fa-map-marker"></i> 07th Avenue, New York, NY, United States</span><span class="package"><i class="fa fa-money"></i>$22,000-$50,000</span></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+                
+               
+        </div>
+        <div class="row">
+            <input type="button" class="btn brows-btn" value="Brows All Jobs" />
+        </div>
+    </div>
+</section>

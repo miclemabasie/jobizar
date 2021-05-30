@@ -1,0 +1,85 @@
+{% load static %}
+
+<!-- Navigation Start  -->
+<nav class="navbar navbar-default navbar-sticky bootsnav">
+
+<div>      
+<!-- Start Header Navigation -->
+<div class="navbar-header">
+  <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-menu">
+    <i class="fa fa-bars"></i>
+  </button>
+  <a class="navbar-brand" href="index.html"><img src="{% static 'site-1/img/joblogo.png' %}" class="logo" alt=""></a>
+</div>
+<!-- End Header Navigation -->
+
+<!-- Collect the nav links, forms, and other content for toggling -->
+<div class="collapse navbar-collapse" id="navbar-menu">
+  <ul class="nav navbar-nav navbar-right" data-in="fadeInDown" data-out="fadeOutUp">
+    {% if recruiter %}
+      <li><a href="{% url 'users:home' %}">Home</a></li> 
+
+      <li><a href="{% url 'users:profile-view' request.user.profile.slug%}">My Profile</a></li> 
+      <li><a href="{% url 'recruiters:add-job' %}">Add Job</a></li> 
+
+      {% if request.user.profile.has_company %}
+      <li><a href="{% url 'companies:company-home-page' request.user.profile.company.slug%}">My Jobs</a></li> 
+      {% else %}
+      <li><a href="{% url 'recruiters:all-recruiter-jobs' request.user.profile.slug%}">Myy Jobs</a></li> 
+      {% endif %}
+
+      <li><a href="{% url "blog:list" %}">Blog</a></li> 
+     
+
+      
+      
+      <li class="dropdown">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown">My Company</a>
+        <ul class="dropdown-menu animated fadeOutUp" style="display: none; opacity: 1;">
+          <li><a href="resume.html"></a></li>
+          {% if request.user.profile.has_company %}
+          <li><a href="{% url "companies:company-profile-view" request.user.profile.company.slug %}">Company Profile</a></li>
+          
+          {% else %}
+          <li><a href="{% url "companies:setup-company" request.user.profile.slug %}">Create Company</a></li>
+          {% endif %}
+          
+          <li><a href="{% url 'recruiters:company-jobs-analytics' request.user.profile.slug %}">Jobs Analytics</a></li>
+        </ul>
+      </li>
+      <li><a href="{% url 'account_logout' %}">Logout</a></li>
+
+
+
+      {% else %}
+
+      
+
+      <li><a href="{% url 'users:home' %}">Home</a></li> 
+     {% if request.user.is_authenticated %}
+      <li><a href="{% url 'users:profile-view' request.user.profile.slug%}">Profile</a></li> 
+      {% endif %}
+      {% if request.user.profile.has_company %}
+      <li><a href="{% url 'companies:company-home-page' request.user.profile.company.slug%}">Recruiter</a></li> 
+      {% elif request.user.profile.has_job %}
+      <li><a href="{% url 'recruiters:all-recruiter-jobs' request.user.profile.slug%}">Recruiter</a></li> 
+      {% else %}
+      <li><a href="{% url "users:recruiter-guide" %}">Recruiter</a></li> 
+      {% endif %}
+      <li><a href="{% url "blog:list" %}">Blog</a></li> 
+      <li><a href="{% url 'candidates:cbv-browse-jobs' %}">Browse Jobs</a></li>
+
+      {% if not request.user.is_authenticated %}
+      <li><a href="{% url 'account_login' %}">Login</a></li>
+      {% else %}
+      <li><a href="{% url 'account_logout' %}">Logout</a></li>
+      {% endif %}
+
+    
+      {% endif %}
+
+    </ul>
+</div><!-- /.navbar-collapse -->
+</div>   
+</nav>
+<!-- Navigation End  -->

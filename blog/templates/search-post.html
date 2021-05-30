@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+
+{% block head_css %}
+  {% include "utils/css-refs.html" %}
+{% endblock head_css %}
+
+
+{% block content %}
+<form>
+   
+    {{form}}
+    <input type="submit" class="btn btn-success">
+</form>
+{% endblock content %}
+
+
+{% block js %}
+  {% include "utils/js-refs.html" %}
+{% endblock js %}

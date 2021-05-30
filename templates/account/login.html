@@ -1,0 +1,83 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+{% load static %}
+
+{% block head_css %}
+  {% include "utils/css-refs.html" %}
+{% endblock head_css %}
+
+{% load i18n %}
+{% load account socialaccount %}
+
+{% block head_title %}
+
+{% trans "Sign In" %}{% endblock %}
+
+
+  {% block content %}
+
+
+  {% get_providers as socialaccount_providers %}
+
+
+
+  <section class="login-wrapper">
+    <div class="container">
+      <div class="col-md-6 col-sm-8 col-md-offset-3 col-sm-offset-2">
+
+        <h1><span style="color: red;">L</span>ogin</h1>
+        <form method="post">
+          {% csrf_token %}
+          <!-- <div class="form-control input-lg"> -->
+            {{form.login|as_crispy_field}}
+          
+          <!-- <input type="password" class="form-control input-lg" placeholder="Password">
+           -->
+           {{form.password|as_crispy_field}}
+          <label><a href="{% url 'account_reset_password' %}">Forget Password?</a></label>
+          {% if redirect_field_value %}
+            <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
+          {% endif %}
+          <button type="submit" class="btn btn-primary">Login</button>
+
+          <p>Don't Have An Account Yet? <a href="{{ signup_url }}">Create An Account</a></p>
+        </form>
+
+        {% if socialaccount_providers %}
+        <p> Sign in with third party Social Account</p>
+      
+        <div class="socialaccount_ballot">
+      
+          <ul class="socialaccount_providers">
+            {% include "socialaccount/snippets/provider_list.html" with process="login" %}
+          </ul>
+      
+      
+        </div>
+      
+        {% include "socialaccount/snippets/login_extra.html" %}
+      
+        {% else %}
+        <p>{% blocktrans %}If you have not created an account yet, then please
+        <a href="{{ signup_url }}">sign up</a> first.{% endblocktrans %}</p>
+        {% endif %}
+    
+          
+        
+  
+        </div>
+      </div>
+    </div>
+  </section>
+
+</div>
+  {% endblock %}
+</div>
+
+{% block js %}
+  {% include "utils/js-refs.html" %}
+{% endblock js %}
+
+
+{{form.login|as_crispy_field}}
+              {{form.password|as_crispy_field}}

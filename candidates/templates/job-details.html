@@ -1,0 +1,73 @@
+{% extends 'base.html' %}
+<!-- {% load blog_tags %} -->
+{% load job_extras %}
+
+
+{% block head_css %}
+{% include "utils/css-refs.html" %}
+{% endblock head_css %}
+
+{% block content %}
+<div class="container mt-4" style="margin-top: 40px; margin-bottom: 40px;">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="card card-signin my-5">
+        <div class="card-body">
+          <h3>
+            <b>{{job.title}} ({{job.job_type}})</b>
+          </h3>
+          <p style="font-size: 18px">Company: {% if job.company %} <a class="text-upper" href="{% url "companies:company-home-page" job.company.slug %}">{{job.company}}</a>  {% else %} None
+               {%endif%}, Location: {{job.location}}</p>
+
+          {% if job.link %}
+          <a class="btn btn-warning btn-lg" href="{{job.link}}"
+            ><b>Apply On Company's Website</b></a
+          >
+          {% else %} {% if not applied %} {% if profile.resume %}
+          <a
+            class="btn btn-warning btn-lg"
+            href="{% url 'candidates:apply-job' job.slug %}"
+            ><b>Apply Now</b></a
+          >
+          {%else %}
+          <a class="btn btn-danger btn-lg" href="{% url 'users:profile-update'  request.user.profile.slug%}"
+            ><b>Add Resume to apply!</b></a
+          >
+          {%endif%} {% else %}
+          <a class="btn btn-success btn-lg" href=""
+            ><b>Applied!</b></a
+          >
+          {% endif %} {%endif%} {% if not saved %}
+          <a
+            class="btn btn-primary btn-lg ml-2"
+            href="{% url 'candidates:save-job' job.slug %}"
+            ><b>Save</b></a
+          >
+          {% else %}
+          <a
+            class="btn btn-danger btn-lg ml-2"
+            href="{% url 'candidates:remove-job' job.slug %}"
+            ><b>Remove</b></a
+          >
+          {% endif %}
+          <hr my-2 />
+          <span style="font-size: 18px"><b>Job Description</b></span>
+          <p style="white-space: pre-wrap; font-size: 16px">
+            {{ job.description|convert_markdown|safe }}
+
+          </p>
+          <span style="font-size: 18px"><b>Contact</b></span>
+          <p><strong>Email:</strong>{{job.recruiter.email}}, <strong>phone:</strong>{{job.recruiter.profile.phone}}, <strong>Posted By:</strong>{{posted_by}}, </p>
+          <hr my-2 />
+          <p><b class="mr-2">Skills Required:</b>{{job.skills_req}}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock content %}
+
+
+{% block js %}
+{% include "js-refs.html" %}
+{% endblock js %}

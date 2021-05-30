@@ -1,0 +1,87 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block head_css %}{% include 'utils/css-refs.html' %}{% endblock head_css %}
+
+
+
+
+{% block content %}
+
+
+
+<section class="profile-detail">
+  <div class="container">
+    <div class="col-md-12">
+      <div class="row">
+        <div class="basic-information">
+          <div class="col-md-3 col-sm-3">
+           <img src="{{profile.image.url}}" alt="Avatar" class="img-responsive" style="border-radius: 50%">
+          </div>
+          <div class="col-md-9 col-sm-9">
+            <div class="profile-content">
+              <h2>{{user.first_name}} {{user.last_name}}<span>{{profile.proffession}}</span></h2>
+              <p>Soft Techi Infoteck Pvt.</p>
+              <ul class="information">
+                <li><span>Name:</span>{{user.first_name}} {{user.last_name}}</li>
+                <li><span>Email:</span>{{user.email}}</li>
+                <li><span>Mobile:</span>{{profile.phone}}</li>
+                <li><span>Company:</span>{{profile.works_at}}</li>
+                <li><span>Date of Birth:</span>{{date_of_birth}}</li>
+              </ul>
+            </div>
+            {% if edit %}
+            <div class="text-right">
+              <a class="btn btn-primary" href="{% url 'users:profile-update' profile.slug %}">Edit Profile</a>
+            </div>
+            {% endif %}
+            
+          </div>
+          </div>
+          <!-- <ul class="social">
+            <li><a href="{{profile.facebook}}" class="facebook"><i class="fa fa-facebook"></i>Facebook</a></li>
+            <li><a href="{{profile.google_pluss}}" class="google"><i class="fa fa-google-plus"></i>Google Plus</a></li>
+            <li><a href="{{profile.twitter}}" class="twitter"><i class="fa fa-twitter"></i>Twitter</a></li>
+            <li><a href="{{profile.linked_in}}" class="linkedin"><i class="fa fa-linkedin"></i>Linked In</a></li>
+            <li><a href="{{profile.instagram}}" class="instagram"><i class="fa fa-instagram"></i>Instagram</a></li>
+          </ul> -->
+          <div class="panel panel-default" style="margin-top: 30px;">
+            <div class="panel-heading">
+              <i class="fa fa-user fa-fw"></i> About Me
+            </div>
+                      <!-- /.panel-heading -->
+            <div class="panel-body">
+            <p>{{profile.bio}}</p>	
+            </div>
+          </div>
+          {% if has_skills %}
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <i class="fa fa-cog fa-fw"></i> Skills
+            </div>
+                      <!-- /.panel-heading -->
+            <div class="panel-body">
+            <p>The front end is the part that users see and interact with, includes the User Interface, the animations, and usually a bunch of logic to talk to the backend.</p>	
+            {% for skill in skills %}
+            <span class="service-tag">{{skill}}</span>           
+
+            {% endfor %}
+            <div class="text-right">
+              <a class="btn btn-primary" href="{{profile.resume.url}}">View Resume</a>
+            </div>
+            </div>
+          </div>
+          {% else %}
+              <h3>User has No skill</h3>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </div>
+</section> 
+{% endblock content %}
+
+
+{% block js %}
+{% include 'utils/js-refs.html' %}
+{% endblock js %}

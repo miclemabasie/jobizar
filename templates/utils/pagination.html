@@ -1,0 +1,27 @@
+<nav class="aria-label">
+<ul class="pagination">
+    {% if page.has_previous %}
+    <li class="page-item">
+        <a href="?page={{page.previous_page_number}}" class="page-link">Previous</a>
+    </li>
+    {%else%}
+    <li class="page-item disabled"> 
+        <a href="" class="page-link">Previous</a>  
+    </li>
+    {% endif%}
+    <li class="page-item active">
+        <a href="" class="page-link">{{page.number}}</a>
+    </li>
+    {% if page.has_next %}
+    <li class="page-item">
+        <a href="?page={{page.next_page_number}}" class="page-link">Next</a>
+    </li>
+    {%else%}
+    <li class="page-item disabled"> 
+        <a href="" class="page-link">Next</a>  
+    </li>
+    {% endif%}
+    
+</ul>
+
+</nav>

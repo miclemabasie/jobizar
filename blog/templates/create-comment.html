@@ -1,0 +1,23 @@
+{% extends "base-blog.html" %}
+{% load crispy_forms_tags %}
+
+
+{% block head_css %}
+  {% include "utils/css-refs.html" %}
+{% endblock head_css %}
+
+{% block content %}
+  <div class="container">
+      <h3>Add comment for "{{post.title}}"</h3>
+      <form action="." method="post">
+          {% csrf_token %}
+          {{form|crispy}}
+          <input type="submit" value="Add comment">
+      </form>
+  </div>
+{% endblock content %}
+
+
+{% block js %}
+  {% include "utils/js-refs.html" %}
+{% endblock js %}
