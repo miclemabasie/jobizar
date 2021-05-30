@@ -1,0 +1,112 @@
+.comments-list-img {
+    float: left;
+    margin-right: 15px;
+  }
+
+  .comments-content-wrap {
+    color: #42414f;
+    font-size: 12px;
+    line-height: 1;
+    margin: 0 0 15px 80px;
+    padding: 10px;
+    position: relative;
+  }
+
+  
+  .author-avatar {
+    display: inline-block;
+    float: left;
+    width: 10%;
+  }
+
+.comments-content-wrap span b {
+    margin-right: 5px
+}
+  
+span.post-time {
+    margin-right: 5px
+  }
+  
+.comments-content-wrap p {
+color: #909295;
+line-height: 18px;
+margin-bottom: 5px;
+margin-top: 15px;
+}
+  
+li.threaded-comments {
+margin-left: 50px
+}
+
+.comment-respond {
+    margin-top: 60px;
+  }
+  
+
+
+span.email-notes {
+color: #42414f;
+display: block;
+font-size: 12px;
+margin-bottom: 10px;
+}
+
+.comment-respond p {
+color: #444;
+margin-bottom: 5px;
+}
+
+.comment-respond input[type=text], .comment-respond input[type=email] {
+border: 1px solid #e5e5e5;
+border-radius: 0;
+height: 32px;
+margin-bottom: 15px;
+padding: 0 0 0 10px;
+width: 100%;
+}
+
+.comment-respond textarea#message-box {
+border: 1px solid #e5e5e5;
+border-radius: 0;
+max-width: 100%;
+padding: 10px;
+height: 130px;
+width: 100%;
+}
+
+.comment-respond input[type="submit"] {
+background: rgba(0, 0, 0, 0) none repeat scroll 0 0;
+border: 1px solid #3ec1d5;
+border-radius: 20px;
+box-shadow: none;
+color: #444;
+display: inline-block;
+font-size: 12px;
+font-weight: 700;
+height: 40px;
+line-height: 14px;
+margin-top: 20px;
+padding: 10px 15px;
+text-shadow: none;
+text-transform: uppercase;
+transition: all 0.3s ease 0s;
+white-space: nowrap;
+}
+
+.comments-content-wrap span a {
+color: #000;
+}
+
+.comments-content-wrap span a:hover {
+color: #3EC1D5;
+}
+
+.comment-respond input[type=submit]:hover {
+border: 1px solid #3EC1D5;
+color: #fff;
+background: #3EC1D5;
+}
+
+a .tag_obj {
+  color: blue;
+}
