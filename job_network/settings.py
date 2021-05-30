@@ -144,7 +144,8 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': "job_lister",
         'HOST': 'localhost',
-        'PORT': "miclem",
+        'PORT': "5432",
+        'USER': "miclem",
         'PASSWORD': "12electron@3#"
     }
 }
