@@ -12,7 +12,7 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 
 from pathlib import Path
 
-import django_heroku
+# import django_heroku
 import os
 import environ
 
@@ -215,4 +215,4 @@ LOGIN_REDIRECT_URL = "/"
 
 # http://127.0.0.1:8000/accounts/google/login/callback/
 
-django_heroku.settings(locals())
+# django_heroku.settings(locals())
