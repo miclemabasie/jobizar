@@ -30,7 +30,7 @@ SECRET_KEY = "712d880b903580e2a3aef42401d04d7ad769ea7a70988132"
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["jobizar.herokuapp.com"]
 
 ACCOUNT_EMAIL_VIRIFICATION = True
 # Application definition
