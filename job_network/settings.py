@@ -35,7 +35,7 @@ SECRET_KEY = env('SECRET_KEY')
 DEBUG = env('DEBUG')
 
 
-ALLOWED_HOSTS = ["jobizar.herokuapp.com", "localhost"]
+ALLOWED_HOSTS = ["jobizar.herokuapp.com"]
 
 ACCOUNT_EMAIL_VIRIFICATION = True
 # Application definition
